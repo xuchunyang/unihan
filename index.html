@@ -102,6 +102,10 @@
               error.classList.add("hidden");
               output.classList.remove("hidden");
             }
+          })
+          .catch(e => {
+              error.textContent = e.message;
+              error.classList.remove("hidden");
           });
       }
 
