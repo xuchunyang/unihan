@@ -17,7 +17,7 @@
       }
 
       .container {
-        margin: 0 6px;
+        margin: 6px;
       }
 
       form {
@@ -34,16 +34,79 @@
       button {
         font-size: 100%;
       }
+
+      .hidden {
+        display: none;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        border: 1px solid #000;
+        padding: 0.5em;
+      }
+
+      th {
+        font-weight: normal;
+      }
     </style>
   </head>
   <body>
     <h1>查询 Unicode 汉字数据库 (Unihan)</h1>
     <form class="container">
-      <label for="query">输入汉字：</label>
-      <input id="query" type="text" placeholder="如「好」、0x597d">
+      <label for="query">输入一个汉字：</label>
+      <input id="query" type="text" placeholder="比如「好」" required value="好">
       <button>查询</button>
     </form>
+    <div class="container progress"></div>
+    <div class="container error hidden"></div>
+    <div class="container output hidden">
+      <table>
+        <caption id="caption"></caption>
+        <tbody>
+          <tr> <th>拼音</th> <td id="kMandarin"></td> </tr>
+          <tr> <th>笔画</th> <td id="kTotalStrokes"></td> </tr>
+          <tr> <th>翻译</th> <td id="kDefinition"></td> </tr>
+        </tbody>
+      </table>
+    </div>
     <script>
+      const input = document.querySelector("input");
+      const output = document.querySelector(".output");
+      const error = document.querySelector(".error");
+      const progress = document.querySelector(".progress");
+
+      function search(e) {
+        if (e) e.preventDefault();
+        const q = input.value;
+        progress.textContent = `Searching ${q}...`;
+        fetch("api/unihan?q=" + q)
+          .then(r => r.json())
+          .then(json => {
+            progress.textContent = "";
+            if (json.error) {
+              error.textContent = json.error;
+              error.classList.remove("hidden");
+              output.classList.add("hidden");
+            } else {
+              // console.log(json);
+              const codepoint = json.codepoint;
+              const character = String.fromCodePoint(codepoint);
+              output.querySelector("#caption").textContent = character;
+              output.querySelector("#kMandarin").textContent = json.kMandarin;
+              output.querySelector("#kTotalStrokes").textContent = json.kTotalStrokes;
+              output.querySelector("#kDefinition").textContent = json.kDefinition;
+              error.classList.add("hidden");
+              output.classList.remove("hidden");
+            }
+          });
+      }
+
+      document.querySelector("form").onsubmit = search;
+      search();
     </script>
   </body>
 </html>
