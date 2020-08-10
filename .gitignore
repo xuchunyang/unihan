@@ -1,4 +1,5 @@
 node_modules
+.vercel
 
 # https://www.unicode.org/Public/zipped/13.0.0/Unihan.zip
 *.zip
