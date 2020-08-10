@@ -104,8 +104,9 @@
             }
           })
           .catch(e => {
-              error.textContent = e.message;
-              error.classList.remove("hidden");
+            progress.textContent = "";
+            error.textContent = e.message;
+            error.classList.remove("hidden");
           });
       }
 
