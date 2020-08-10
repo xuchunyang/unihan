@@ -1,0 +1,12 @@
+{
+  "name": "unihan",
+  "version": "1.0.0",
+  "description": "Website and API for Unihan database",
+  "main": "none",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xu Chunyang",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {}
+}
