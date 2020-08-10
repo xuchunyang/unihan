@@ -1,0 +1,8 @@
+node_modules
+
+# https://www.unicode.org/Public/zipped/13.0.0/Unihan.zip
+*.zip
+Unihan
+
+# the result of parser.js, 40M
+unihan.json
