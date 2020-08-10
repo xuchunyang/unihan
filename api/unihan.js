@@ -1,5 +1,12 @@
 const fs = require("fs");
-const json = JSON.parse(fs.readFileSync("unihan.json", "utf8"));
+
+const jsonFile = fs.existsSync("unihan.json") ?
+      // local
+      "unihan.json" :
+      // vercel
+      "../unihan.json";
+
+const json = JSON.parse(fs.readFileSync(jsonFile, "utf8"));
 
 module.exports = (req, res) => {
   res.setHeader("Content-Type", "application/json");
