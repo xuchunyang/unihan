@@ -7,3 +7,4 @@ Unihan
 
 # the result of parser.js, 40M
 #unihan.json
+/.env
