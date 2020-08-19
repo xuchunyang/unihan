@@ -2,7 +2,7 @@
 
 https://unihan.vercel.app/
 
-![screen shot of the website](Screen Shot 2020-08-19 at 14.05.07.png)
+![screen shot of the website](Screen-Shot-2020-08-19-at-14.05.07.png)
 
 ## API
 
