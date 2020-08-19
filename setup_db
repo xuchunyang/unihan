@@ -28,8 +28,15 @@ async function insertFileToDB(jsonFile, collection) {
   for (const c in data) {
     // String.fromCodePoint(22909) // => "好"
     const s = String.fromCodePoint(Number(c));
-    chars.push({[s]: data[c]});
+    data[c].char = s;
+    chars.push(data[c]);
   }
+  await collection.createIndex(
+    { char: 1 },
+    {
+      name: "按字符本身检索"
+    }
+  );
   await collection.insertMany(chars);
 }
 
