@@ -1,85 +1,100 @@
 # A website and API for Unihan database
 
-https://unihan.herokuapp.com/
+https://unihan.vercel.app/
 
-![screen shot of the website](Screen-Shot-2020-08-10-at-17.39.05.png)
+![screen shot of the website](Screen Shot 2020-08-19 at 14.05.07.png)
 
 ## API
 
-The API endpoint is `https://unihan.herokuapp.com/api/unihan`. Use the `q` query
-parameter to supply the character itself or its codepoint, for example, to query
-`你`, both of these works
+The API endpoint is `https://unihan.vercel.app/api/unihan`. Use the `q` query
+parameter to supply the character itself, for example, to query `好`:
 
-- https://unihan.herokuapp.com/api/unihan?q=%E6%9F%A5
-- https://unihan.herokuapp.com/api/unihan?q=0x4f60
+- https://unihan.vercel.app/api/unihan?q=好
 
 Here is an example response:
 
 ```
-$ curl -i 'https://unihan.herokuapp.com/api/unihan?q=%E6%9F%A5'
-HTTP/1.1 200 OK
-Server: Cowboy
-Connection: keep-alive
-Content-Type: application/json
-Access-Control-Allow-Origin: *
-Cache-Control: public, max-age=604800, immutable
-Date: Mon, 10 Aug 2020 09:43:05 GMT
-Content-Length: 1439
-Via: 1.1 vegur
+$ curl -i 'https://unihan.vercel.app/api/unihan?q=好'
+HTTP/2 200
+content-type: application/json; charset=utf-8
+cache-control: max-age=0
+date: Wed, 19 Aug 2020 06:04:50 GMT
+access-control-allow-origin: *
+etag: W/"621-xeFsz5Bs+nKsE7Lxr+2iKMme2HA"
+content-length: 1569
+x-vercel-cache: HIT
+age: 290
+server: Vercel
+x-vercel-id: hkg1::sfo1::f9htm-1597817380715-66680e361cb9
+strict-transport-security: max-age=63072000; includeSubDomains; preload
 
 {
-  "kCowles": "405",
-  "kDaeJaweon": "0908.060",
-  "kHanYu": "21181.070",
-  "kIRGDaeJaweon": "0908.060",
-  "kIRGDaiKanwaZiten": "14643",
-  "kIRGHanyuDaZidian": "21181.070",
-  "kIRGKangXi": "0520.070",
-  "kKangXi": "0520.070",
-  "kLau": "167",
-  "kMatthews": "103",
-  "kMorohashi": "14643",
-  "kSBGY": "093.37 169.20",
-  "kCangjie": "DAM",
-  "kCihaiT": "687.404",
-  "kFourCornerCode": "4010.7",
-  "kFrequency": "3",
-  "kHKGlyph": "1890",
-  "kPhonetic": "13 97",
-  "kUnihanCore2020": "GHMT",
-  "kIICore": "AGTHM",
-  "kIRG_GSource": "G0-3269",
-  "kIRG_HSource": "HB1-AC64",
-  "kIRG_KPSource": "KP1-4B03",
-  "kIRG_TSource": "T1-5167",
-  "kIRG_VSource": "V1-595F",
-  "kRSUnicode": "75.5",
-  "kTotalStrokes": "9",
-  "kBigFive": "AC64",
-  "kCCCII": "21443A",
-  "kCNS1986": "1-5167",
-  "kCNS1992": "1-5167",
-  "kEACC": "21443A",
-  "kGB0": "1873",
-  "kGB1": "1873",
-  "kKPS1": "4B03",
-  "kMainlandTelegraph": "2686",
-  "kTGH": "2013:1431",
-  "kTaiwanTelegraph": "2686",
-  "kXerox": "244:354",
-  "kRSKangXi": "75.5",
-  "kCantonese": "caa4 zaa1",
-  "kDefinition": "investigate, examine, seek into",
-  "kHanyuPinlu": "chá(470)",
-  "kHanyuPinyin": "21181.070:chá,zhā,chái",
-  "kJapaneseKun": "SHIRABERU",
-  "kJapaneseOn": "SA",
-  "kKorean": "SA",
-  "kMandarin": "chá",
-  "kTGHZ2013": "034.130:chá 461.190:zhā",
-  "kVietnamese": "tra",
-  "kXHC1983": "0113.030:chá 1447.030:zhā",
-  "kSemanticVariant": "U+67FB<kMatthews",
-  "codepoint": 26597
+  "kCowles": "1099 1100",
+  "kDaeJaweon": "0518.120",
+  "kFennIndex": "150.10 151.01 151.03",
+  "kGSR": "1044a",
+  "kHanYu": "21028.010",
+  "kIRGDaeJaweon": "0518.120",
+  "kIRGDaiKanwaZiten": "06053",
+  "kIRGHanyuDaZidian": "21028.010",
+  "kIRGKangXi": "0255.110",
+  "kKangXi": "0255.110",
+  "kLau": "1193 1194",
+  "kMatthews": "2062",
+  "kMeyerWempe": "741 742",
+  "kMorohashi": "06053",
+  "kNelson": "1191",
+  "kSBGY": "303.08 419.01",
+  "kCangjie": "VND",
+  "kCihaiT": "378.103",
+  "kFenn": "552A",
+  "kFourCornerCode": "4744.7",
+  "kFrequency": "1",
+  "kGradeLevel": "1",
+  "kHKGlyph": "0871",
+  "kPhonetic": "481",
+  "kUnihanCore2020": "GHJKMPT",
+  "kIICore": "AGTJHKMP",
+  "kIRG_GSource": "G0-3A43",
+  "kIRG_HSource": "HB1-A66E",
+  "kIRG_JSource": "J0-3925",
+  "kIRG_KPSource": "KP0-F3F8",
+  "kIRG_KSource": "K0-7B3F",
+  "kIRG_TSource": "T1-476F",
+  "kIRG_VSource": "V1-515F",
+  "kRSUnicode": "38.3",
+  "kTotalStrokes": "6",
+  "kBigFive": "A66E",
+  "kCCCII": "213948",
+  "kCNS1986": "1-476F",
+  "kCNS1992": "1-476F",
+  "kEACC": "213948",
+  "kGB0": "2635",
+  "kGB1": "2635",
+  "kJis0": "2505",
+  "kJoyoKanji": "2010",
+  "kKPS0": "F3F8",
+  "kKSC0": "9131",
+  "kKoreanEducationHanja": "2007",
+  "kMainlandTelegraph": "1170",
+  "kTGH": "2013:581",
+  "kTaiwanTelegraph": "1170",
+  "kXerox": "241:114",
+  "kRSAdobe_Japan1_6": "C+1975+38.3.3 C+1975+39.3.3",
+  "kRSKangXi": "38.3",
+  "kCantonese": "hou2 hou3",
+  "kDefinition": "good, excellent, fine; well",
+  "kHangul": "호:0E",
+  "kHanyuPinlu": "hǎo(6060) hāo(142) hào(115)",
+  "kHanyuPinyin": "21028.010:hǎo,hào",
+  "kJapaneseKun": "KONOMU SUKU YOI",
+  "kJapaneseOn": "KOU",
+  "kKorean": "HO",
+  "kMandarin": "hǎo",
+  "kTGHZ2013": "132.140:hǎo 133.010:hào",
+  "kTang": "*xɑ̀u *xɑ̌u",
+  "kVietnamese": "háo",
+  "kXHC1983": "0445.030:hǎo 0448.030:hào",
+  "char": "好"
 }
 ```
