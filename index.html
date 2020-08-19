@@ -74,7 +74,7 @@
     <h1>查询 Unicode 汉字数据库 (Unihan)</h1>
     <form class="container">
       <label for="query">输入一个汉字：</label>
-      <input id="query" type="text" placeholder="比如「好」" required value="好">
+      <input id="query" type="text" placeholder="比如「好」" required value="好" maxlength="1">
       <button>查询</button>
     </form>
     <div class="container progress"></div>
@@ -95,8 +95,24 @@
       const progress = document.querySelector(".progress");
       const tbody = output.querySelector("tbody");
 
+      document.querySelector("form").onsubmit = search;
+      loadState();
+      search();
+
+      function saveState() {
+        localStorage.setItem("char", input.value);
+      }
+
+      function loadState() {
+        const char = localStorage.getItem("char");
+        if (char) {
+          input.value = char;
+        }
+      }
+
       function search(e) {
         if (e) e.preventDefault();
+        saveState();
         const q = input.value;
         progress.textContent = `Searching ${q}...`;
         fetch("api/unihan?q=" + q)
@@ -141,9 +157,6 @@
             error.classList.remove("hidden");
           });
       }
-
-      document.querySelector("form").onsubmit = search;
-      search();
     </script>
   </body>
 </html>
