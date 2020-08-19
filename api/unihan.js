@@ -43,7 +43,6 @@ module.exports = async (req, res) => {
     res.status(400).json({error: "No result"});
     return;
   }
-
-  found.codepoint = q.codePointAt(0);
+  delete found._id;
   res.status(200).json(found);
 };

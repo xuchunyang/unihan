@@ -55,6 +55,19 @@
       th {
         font-weight: normal;
       }
+
+      a {
+        color: blue;
+        text-decoration: none;
+      }
+
+      a:visited {
+        color: blue;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -68,7 +81,6 @@
     <div class="container error hidden"></div>
     <div class="container output hidden">
       <table>
-        <caption id="caption"></caption>
         <tbody>
           <tr> <th>拼音</th> <td id="kMandarin"></td> </tr>
           <tr> <th>笔画</th> <td id="kTotalStrokes"></td> </tr>
@@ -81,6 +93,7 @@
       const output = document.querySelector(".output");
       const error = document.querySelector(".error");
       const progress = document.querySelector(".progress");
+      const tbody = output.querySelector("tbody");
 
       function search(e) {
         if (e) e.preventDefault();
@@ -95,13 +108,29 @@
               error.classList.remove("hidden");
               output.classList.add("hidden");
             } else {
-              // console.log(json);
-              const codepoint = json.codepoint;
-              const character = String.fromCodePoint(codepoint);
-              output.querySelector("#caption").textContent = character;
-              output.querySelector("#kMandarin").textContent = json.kMandarin;
-              output.querySelector("#kTotalStrokes").textContent = json.kTotalStrokes;
-              output.querySelector("#kDefinition").textContent = json.kDefinition;
+              console.log(json);
+              tbody.textContent = "";
+              const trans = {
+                kHanyuPinyin: "汉语大词典读音",
+                kTotalStrokes: "笔画数",
+                kDefinition: "英文翻译",
+                kMandarin: "最常见读音",
+              };
+              delete json.char;
+              const entries = Object.entries(json).sort((a, b) => {
+                if (a[0] in trans && b[0] in trans) {
+                  return a[0] > b[0] ? 1 : -1;
+                }
+                if (a[0] in trans) return -1;
+                if (b[0] in trans) return 1;
+                return a[0] > b[0] ? 1 : -1;
+              });
+              entries.forEach(([k, v]) => {
+                tbody.insertAdjacentHTML(
+                  "beforeend",
+                  `<tr> <th><a href="https://unicode.org/reports/tr38/#${k}">${trans[k] || k}</a></th> <td>${v}</td> </tr>`
+                );
+              });
               error.classList.add("hidden");
               output.classList.remove("hidden");
             }
