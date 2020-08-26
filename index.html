@@ -144,6 +144,8 @@
                 kTotalStrokes: "笔画数",
                 kDefinition: "英文翻译",
                 kMandarin: "最常见读音",
+                kSimplifiedVariant: "简体",
+                kTraditionalVariant: "繁体",
               };
               delete json.char;
               const entries = Object.entries(json).sort((a, b) => {
@@ -155,6 +157,14 @@
                 return a[0] > b[0] ? 1 : -1;
               });
               entries.forEach(([k, v]) => {
+                if (["kSimplifiedVariant", "kTraditionalVariant"].includes(k)) {
+                  // 汉 => kTraditionalVariant: U+6F22 => 漢
+                  if (/^U\+[0-9a-fA-F]+$/.test(v)) {
+                    v = String.fromCodePoint(parseInt(v.slice(2), 16));
+                  } else {
+                    console.error(`${v} is not a codepoint`);
+                  }
+                }
                 tbody.insertAdjacentHTML(
                   "beforeend",
                   `<tr> <th><a href="https://unicode.org/reports/tr38/#${k}">${trans[k] || k}</a></th> <td>${v}</td> </tr>`
