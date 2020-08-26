@@ -10,11 +10,14 @@
         margin: 0 auto;
         font-family: system-ui, sans-serif;
         line-height: 1.5;
+        position: relative;
       }
 
       h1 {
         font-size: 1.5rem;
         text-align: center;
+        margin: 0;
+        padding: 0.5em 0;
       }
 
       .container {
@@ -68,10 +71,20 @@
       a:hover {
         text-decoration: underline;
       }
+
+      p.version {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        margin: 0;
+        font-weight: 300;
+        font-size: 85%;
+      }
     </style>
   </head>
   <body>
-    <h1>查询 Unicode 汉字数据库 (Unihan)</h1>
+    <p class="version">Unicode 13.0.0</p>
+    <h1>查询 <a href="https://unicode.org/reports/tr38/">Unihan</a> 数据库</h1>
     <form class="container">
       <label for="query">输入一个汉字：</label>
       <input id="query" type="text" placeholder="比如「好」" required value="好" maxlength="1">
