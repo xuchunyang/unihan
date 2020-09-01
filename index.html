@@ -10,7 +10,6 @@
         margin: 0 auto;
         font-family: system-ui, sans-serif;
         line-height: 1.5;
-        position: relative;
       }
 
       h1 {
@@ -21,12 +20,14 @@
       }
 
       .container {
-        margin: 6px;
+        margin: 0 6px;
+        position: relative;
       }
 
       form {
         display: flex;
         align-items: center;
+        margin-bottom: 1em;
       }
 
       input {
@@ -74,32 +75,35 @@
 
       p.version {
         position: absolute;
-        top: 0.5em;
+        top: 0;
         right: 0.5em;
         margin: 0;
         font-weight: 300;
         font-size: 85%;
+        z-index: -1;
       }
     </style>
   </head>
   <body>
-    <p class="version">Unicode 13.0.0</p>
-    <h1>查询 <a href="https://unicode.org/reports/tr38/">Unihan</a> 数据库</h1>
-    <form class="container">
-      <label for="query">输入一个汉字：</label>
-      <input id="query" type="text" placeholder="比如「好」" required value="好" maxlength="1">
-      <button>查询</button>
-    </form>
-    <div class="container progress"></div>
-    <div class="container error hidden"></div>
-    <div class="container output hidden">
-      <table>
-        <tbody>
-          <tr> <th>拼音</th> <td id="kMandarin"></td> </tr>
-          <tr> <th>笔画</th> <td id="kTotalStrokes"></td> </tr>
-          <tr> <th>翻译</th> <td id="kDefinition"></td> </tr>
-        </tbody>
-      </table>
+    <div class="container">
+      <p class="version">Unicode 13.0.0</p>
+      <h1>查询 <a href="https://unicode.org/reports/tr38/">Unihan</a> 数据库</h1>
+      <form>
+        <label for="query">输入一个汉字：</label>
+        <input id="query" type="text" placeholder="比如「好」" required value="好" maxlength="1">
+        <button>查询</button>
+      </form>
+      <div class="progress"></div>
+      <div class="error hidden"></div>
+      <div class="output hidden">
+        <table>
+          <tbody>
+            <tr> <th>拼音</th> <td id="kMandarin"></td> </tr>
+            <tr> <th>笔画</th> <td id="kTotalStrokes"></td> </tr>
+            <tr> <th>翻译</th> <td id="kDefinition"></td> </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <script>
       const input = document.querySelector("input");
@@ -180,6 +184,6 @@
             error.classList.remove("hidden");
           });
       }
-    </script>
+      </script>
   </body>
 </html>
