@@ -9,6 +9,5 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      name: Check latest Unicode Version
-      run: |
-        curl -I https://www.unicode.org/versions/latest/ | grep 13.0.0
+      - name: Check latest Unicode Version
+        run: curl -I https://www.unicode.org/versions/latest/ | grep 13.0.0
