@@ -23,10 +23,20 @@ async function search(char) {
   return found;
 }
 
+async function searchString(s) {
+  return Promise.all([...s].map(search));
+}
+
 module.exports = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
+
+  const { s } = req.query;
+  if (s) {
+    res.status(200).json(await searchString(s));
+    return;
+  }
 
   const { q } = req.query;
   if (!q) {
